@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Little Wave Esports - Ultimate Pro Gaming Hub v5.0</title>
+    <title>Little Wave Esports - Ultimate Pro Gaming Hub (v10.0 Enterprise Edition)</title>
     <style>
         :root {
             --bg-main: #020617;
@@ -20,7 +20,7 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: var(--bg-main); color: var(--text-main); padding-bottom: 100px; overflow-x: hidden; }
+        body { background: var(--bg-main); color: var(--text-main); padding-bottom: 110px; overflow-x: hidden; }
 
         /* Top Header Styling */
         .header { background: linear-gradient(135deg, #090d1f, #1e1b4b); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent-cyan); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 25px rgba(0,240,255,0.3); backdrop-filter: blur(12px); }
@@ -132,7 +132,7 @@
 
     <!-- Live Announcement Bar -->
     <div class="marquee-container">
-        <div class="marquee-content">⚡ Welcome to Little Wave Esports Pro Ultimate Hub! Join daily custom matches & win instant cash prizes! 🚀 Admin controlled active rooms updated live 24x7. Fast withdrawals available!</div>
+        <div class="marquee-content">⚡ Welcome to Little Wave Esports Pro Ultimate Enterprise Hub! Join daily custom matches & win instant cash prizes! 🚀 Admin controlled active rooms updated live 24x7. Fast automated payouts!</div>
     </div>
 
     <div class="container">
@@ -217,5 +217,377 @@
                     <div>Time: <b>10:00 PM</b></div>
                 </div>
                 <button class="btn-action" onclick="showToast('Joined successfully! Deducted ₹15 from wallet.')">Join Match (₹15)</button>
+            </div>
 
+            <div class="t-card" data-category="duo">
+                <div class="t-header">
+                    <span class="game-tag">DUO BATTLE</span>
+                    <span style="color: var(--accent-pink); font-size: 12px; font-weight: bold;">Tonight</span>
+                </div>
+                <div class="t-name">Kalahari Duo Warfare #12</div>
+                <div class="t-info-grid">
+                    <div>Prize Pool: <b>₹600</b></div>
+                    <div>Entry Fee: <b>₹20</b></div>
+                    <div>Map: <b>Kalahari</b></div>
+                    <div>Time: <b>10:45 PM</b></div>
+                </div>
+                <button class="btn-action" onclick="showToast('Joined successfully! Deducted ₹20 from wallet.')">Join Match (₹20)</button>
+            </div>
 
+            <div class="admin-link-box">
+                <a href="admin.html">⚙️ Open Admin Control Center</a>
+            </div>
+        </div>
+
+        <!-- ================= SECTION 2: MATCHES LIST ================= -->
+        <div id="section-matches" class="app-section">
+            <div class="section-header"><span>🎮 All Active & Upcoming Battles</span></div>
+            
+            <div class="t-card">
+                <div class="t-header">
+                    <span class="game-tag">SOLO CLASSIC</span>
+                    <span style="color: var(--accent-yellow); font-size: 12px; font-weight: bold;">Live Today</span>
+                </div>
+                <div class="t-name">Purgatory Solo Rush #42</div>
+                <div class="t-info-grid">
+                    <div>Prize Pool: <b>₹300</b></div>
+                    <div>Entry Fee: <b>₹10</b></div>
+                    <div>Map: <b>Purgatory</b></div>
+                    <div>Time: <b>6:30 PM</b></div>
+                </div>
+                <button class="btn-action" onclick="showToast('Joined successfully! Deducted ₹10 from wallet.')">Join Match (₹10)</button>
+            </div>
+
+            <div class="t-card">
+                <div class="t-header">
+                    <span class="game-tag">SQUAD BATTLE</span>
+                    <span style="color: var(--accent-cyan); font-size: 12px; font-weight: bold;">Tonight</span>
+                </div>
+                <div class="t-name">Kalahari Night War</div>
+                <div class="t-info-grid">
+                    <div>Prize Pool: <b>₹1,000</b></div>
+                    <div>Entry Fee: <b>₹20</b></div>
+                    <div>Map: <b>Kalahari</b></div>
+                    <div>Time: <b>9:15 PM</b></div>
+                </div>
+                <button class="btn-action" onclick="showToast('Joined successfully! Deducted ₹20 from wallet.')">Join Match (₹20)</button>
+            </div>
+
+            <div class="t-card">
+                <div class="t-header">
+                    <span class="game-tag">DUO CLASH</span>
+                    <span style="color: var(--accent-pink); font-size: 12px; font-weight: bold;">Tomorrow</span>
+                </div>
+                <div class="t-name">Alpine Duo Survival</div>
+                <div class="t-info-grid">
+                    <div>Prize Pool: <b>₹400</b></div>
+                    <div>Entry Fee: <b>FREE</b></div>
+                    <div>Map: <b>Alpine</b></div>
+                    <div>Time: <b>5:00 PM</b></div>
+                </div>
+                <button class="btn-action" onclick="showToast('Registered successfully!')">Join Match (Free)</button>
+            </div>
+
+            <div class="t-card">
+                <div class="t-header">
+                    <span class="game-tag">FULL MAP SQUAD</span>
+                    <span style="color: var(--accent-green); font-size: 12px; font-weight: bold;">Upcoming</span>
+                </div>
+                <div class="t-name">Bermuda Grandmaster Scrims</div>
+                <div class="t-info-grid">
+                    <div>Prize Pool: <b>₹1,500</b></div>
+                    <div>Entry Fee: <b>₹50</b></div>
+                    <div>Map: <b>Bermuda</b></div>
+                    <div>Time: <b>10:30 PM</b></div>
+                </div>
+                <button class="btn-action" onclick="showToast('Joined successfully! Deducted ₹50 from wallet.')">Join Match (₹50)</button>
+            </div>
+
+            <div class="t-card">
+                <div class="t-header">
+                    <span class="game-tag">CLASH SQUAD</span>
+                    <span style="color: var(--accent-yellow); font-size: 12px; font-weight: bold;">Tomorrow Night</span>
+                </div>
+                <div class="t-name">Bermuda Clock Tower 4v4 Pro</div>
+                <div class="t-info-grid">
+                    <div>Prize Pool: <b>₹800</b></div>
+                    <div>Entry Fee: <b>₹30</b></div>
+                    <div>Map: <b>Bermuda</b></div>
+                    <div>Time: <b>11:00 PM</b></div>
+                </div>
+                <button class="btn-action" onclick="showToast('Joined successfully! Deducted ₹30 from wallet.')">Join Match (₹30)</button>
+            </div>
+        </div>
+
+        <!-- ================= SECTION 3: LEADERBOARD ================= -->
+        <div id="section-leaderboard" class="app-section">
+            <div class="section-header"><span>🏆 Top Pro Killers & Winners</span></div>
+            
+            <div class="rank-item" style="border: 1px solid var(--accent-yellow);">
+                <div class="rank-number">#1</div>
+                <div class="rank-info">
+                    <div class="rank-name">🔥 Gamer_Rishu</div>
+                    <div class="rank-sub">42 Kills • 15 Wins</div>
+                </div>
+                <div class="rank-prize">₹2,400</div>
+            </div>
+
+            <div class="rank-item">
+                <div class="rank-number">#2</div>
+                <div class="rank-info">
+                    <div class="rank-name">Shadow_Killer</div>
+                    <div class="rank-sub">38 Kills • 11 Wins</div>
+                </div>
+                <div class="rank-prize">₹1,500</div>
+            </div>
+
+            <div class="rank-item">
+                <div class="rank-number">#3</div>
+                <div class="rank-info">
+                    <div class="rank-name">Devil_FF</div>
+                    <div class="rank-sub">30 Kills • 8 Wins</div>
+                </div>
+                <div class="rank-prize">₹900</div>
+            </div>
+
+            <div class="rank-item">
+                <div class="rank-number">#4</div>
+                <div class="rank-info">
+                    <div class="rank-name">Alpha_Vortex</div>
+                    <div class="rank-sub">25 Kills • 6 Wins</div>
+                </div>
+                <div class="rank-prize">₹500</div>
+            </div>
+
+            <div class="rank-item">
+                <div class="rank-number">#5</div>
+                <div class="rank-info">
+                    <div class="rank-name">Silent_Sniper</div>
+                    <div class="rank-sub">22 Kills • 5 Wins</div>
+                </div>
+                <div class="rank-prize">₹300</div>
+            </div>
+
+            <div class="rank-item">
+                <div class="rank-number">#6</div>
+                <div class="rank-info">
+                    <div class="rank-name">Nexus_Gaming</div>
+                    <div class="rank-sub">20 Kills • 4 Wins</div>
+                </div>
+                <div class="rank-prize">₹200</div>
+            </div>
+
+            <div class="rank-item">
+                <div class="rank-number">#7</div>
+                <div class="rank-info">
+                    <div class="rank-name">Viper_99</div>
+                    <div class="rank-sub">18 Kills • 3 Wins</div>
+                </div>
+                <div class="rank-prize">₹150</div>
+            </div>
+
+            <div class="rank-item">
+                <div class="rank-number">#8</div>
+                <div class="rank-info">
+                    <div class="rank-name">Phoenix_Fire</div>
+                    <div class="rank-sub">15 Kills • 2 Wins</div>
+                </div>
+                <div class="rank-prize">₹100</div>
+            </div>
+        </div>
+
+        <!-- ================= SECTION 4: WALLET ================= -->
+        <div id="section-wallet" class="app-section">
+            <div class="section-header"><span>💰 My Wallet & Balance</span></div>
+            
+            <div class="panel-box">
+                <p style="color: var(--text-muted); font-size: 13px;">Available Cash Balance</p>
+                <h3 id="walletBalanceDisplay">₹50.00</h3>
+                <div class="btn-grid">
+                    <button class="btn-sub btn-green" onclick="addMoney()">Add Money</button>
+                    <button class="btn-sub btn-red" onclick="showToast('Minimum withdrawal threshold is ₹100')">Withdraw</button>
+                </div>
+            </div>
+
+            <!-- Coupon Code Section -->
+            <div class="panel-box" style="padding: 15px; text-align: left;">
+                <p style="font-size: 13px; font-weight: bold; margin-bottom: 8px; color: var(--accent-cyan);">🎁 Have a Promo / Coupon Code?</p>
+                <input type="text" id="couponInput" class="input-box" placeholder="Enter coupon code (e.g. WAVE50)">
+                <button class="btn-action" style="padding: 10px;" onclick="applyCoupon()">Apply Coupon</button>
+            </div>
+
+            <div class="section-header" style="font-size: 14px; margin-top: 20px;"><span>📜 Transaction History</span></div>
+            <div style="background: rgba(255,255,255,0.02); padding: 12px 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-color); margin-bottom: 8px;">
+                <div>
+                    <div style="font-weight: bold; font-size: 13px;">Welcome Bonus</div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Today, 10:00 AM</div>
+                </div>
+                <div style="color: var(--accent-green); font-weight: bold; font-size: 14px;">+₹50.00</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.02); padding: 12px 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-color); margin-bottom: 8px;">
+                <div>
+                    <div style="font-weight: bold; font-size: 13px;">Tournament Entry Fee</div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Yesterday, 8:15 PM</div>
+                </div>
+                <div style="color: var(--accent-pink); font-weight: bold; font-size: 14px;">-₹10.00</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.02); padding: 12px 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-color); margin-bottom: 8px;">
+                <div>
+                    <div style="font-weight: bold; font-size: 13px;">Prize Winnings Added</div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">2 days ago</div>
+                </div>
+                <div style="color: var(--accent-green); font-weight: bold; font-size: 14px;">+₹150.00</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.02); padding: 12px 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-color);">
+                <div>
+                    <div style="font-weight: bold; font-size: 13px;">Wallet Deposit (UPI)</div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">3 days ago</div>
+                </div>
+                <div style="color: var(--accent-green); font-weight: bold; font-size: 14px;">+₹100.00</div>
+            </div>
+        </div>
+
+        <!-- ================= SECTION 5: PROFILE & SUPPORT ================= -->
+        <div id="section-profile" class="app-section">
+            <div class="section-header"><span>👤 Gamer Profile & Stats</span></div>
+            
+            <div class="panel-box" style="text-align: left; padding: 20px;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;">
+                    <div style="width: 55px; height: 55px; background: var(--accent-cyan); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: bold; color: var(--bg-main);">R</div>
+                    <div>
+                        <h4 style="font-size: 17px; color: #fff;">Gamer_Rishu</h4>
+                        <p style="font-size: 12px; color: var(--text-muted);">UID: 9876543210</p>
+                    </div>
+                </div>
+                <p style="font-size: 14px; margin-bottom: 10px;">🎮 <b>Game Platform:</b> Free Fire MAX</p>
+                <p style="font-size: 14px; margin-bottom: 10px;">📊 <b>Matches Enrolled:</b> 18</p>
+                <p style="font-size: 14px; margin-bottom: 10px;">🥇 <b>Tournaments Crowned:</b> 4</p>
+                <p style="font-size: 14px;">⚡ <b>Account Status:</b> <span style="color: var(--accent-green);">Fully Active & Verified</span></p>
+            </div>
+
+            <!-- Support Ticket Box -->
+            <div class="panel-box" style="padding: 15px; text-align: left;">
+                <p style="font-size: 14px; font-weight: bold; margin-bottom: 10px; color: var(--accent-cyan);">💬 Contact Support / Report Issue</p>
+                <textarea id="supportMsg" class="input-box" rows="3" placeholder="Describe your issue or query here..."></textarea>
+                <button class="btn-action" style="padding: 10px;" onclick="submitSupport()">Send to Admin</button>
+            </div>
+
+            <div class="section-header" style="font-size: 14px; margin-top: 20px;"><span>❓ Help & Support / Rules</span></div>
+            <div class="faq-box">
+                <div class="faq-q">How to join custom rooms?</div>
+                <div class="faq-a">Room ID and Password will appear live on the Home screen 10 minutes before the match starts. Copy it and join in-game.</div>
+            </div>
+            <div class="faq-box">
+                <div class="faq-q">When are winnings distributed?</div>
+                <div class="faq-a">Winnings are automatically credited to your app wallet within 30 minutes of match completion.</div>
+            </div>
+            <div class="faq-box">
+                <div class="faq-q">Is team collaboration allowed in solo matches?</div>
+                <div class="faq-a">No! Teaming in solo matches leads to permanent account suspension and wallet balance forfeiture.</div>
+            </div>
+            <div class="faq-box">
+                <div class="faq-q">How to withdraw my winning cash?</div>
+                <div class="faq-a">Go to the Wallet section, click withdraw if your balance is above ₹100, and enter your UPI ID.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bottom Fixed Pro App Navigation Bar -->
+    <div class="bottom-nav">
+        <button class="nav-item active" onclick="switchSection('home', this)">
+            <div>🏠</div>
+            <span>Home</span>
+        </button>
+        <button class="nav-item" onclick="switchSection('matches', this)">
+            <div>🎮</div>
+            <span>Matches</span>
+        </button>
+        <button class="nav-item" onclick="switchSection('leaderboard', this)">
+            <div>🏆</div>
+            <span>Ranks</span>
+        </button>
+        <button class="nav-item" onclick="switchSection('wallet', this)">
+            <div>💰</div>
+            <span>Wallet</span>
+        </button>
+        <button class="nav-item" onclick="switchSection('profile', this)">
+            <div>👤</div>
+            <span>Profile</span>
+        </button>
+    </div>
+
+    <!-- Full App Interactive Script Engine -->
+    <script>
+        function switchSection(sectionId, element) {
+            document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            
+            document.getElementById('section-' + sectionId).classList.add('active');
+            element.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showToast(msg) {
+            let t = document.getElementById('toast');
+            t.innerText = msg;
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 3000);
+        }
+
+        function filterMatches(category) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            let cards = document.querySelectorAll('#section-home .t-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function addMoney() {
+            let amt = prompt("Enter amount to add via UPI / Gateway (₹):", "100");
+            if(amt && !isNaN(amt) && amt > 0) {
+                showToast("Successfully added ₹" + amt + " to your gaming wallet!");
+                let newBal = 50 + parseInt(amt);
+                document.getElementById('headerBalance').innerText = "₹" + newBal + ".00";
+                document.getElementById('walletBalanceDisplay').innerText = "₹" + newBal + ".00";
+            }
+        }
+
+        function applyCoupon() {
+            let code = document.getElementById('couponInput').value.trim().toUpperCase();
+            if (code === "WAVE50" || code === "RISHU50") {
+                showToast("🎉 Coupon applied successfully! ₹50 added to wallet.");
+                document.getElementById('couponInput').value = "";
+                let headerBal = document.getElementById('headerBalance');
+                let current = parseInt(headerBal.innerText.replace('₹', '')) + 50;
+                headerBal.innerText = "₹" + current + ".00";
+                document.getElementById('walletBalanceDisplay').innerText = "₹" + current + ".00";
+            } else {
+                showToast("❌ Invalid or expired coupon code!");
+            }
+        }
+
+        function submitSupport() {
+            let msg = document.getElementById('supportMsg').value.trim();
+            if(msg) {
+                showToast("✅ Support ticket submitted successfully! Admin will respond soon.");
+                document.getElementById('supportMsg').value = "";
+            } else {
+                showToast("⚠️ Please write your message first.");
+            }
+        }
+
+        // Real-time synchronization with Admin Panel (`admin.html`)
+        document.getElementById('displayTourney').innerText = localStorage.getItem('tourneyName') || "No Active Tournament Scheduled";
+        document.getElementById('displayId').innerText = localStorage.getItem('roomID') || "Awaiting Admin Update";
+        document.getElementById('displayPass').innerText = localStorage.getItem('roomPass') || "Awaiting Admin Update";
+    </script>
+
+</body>
+</html>
