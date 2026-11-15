@@ -1,92 +1,76 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Little Wave Esports - Ultimate Pro Gaming Hub (v10.0 Enterprise Edition)</title>
+    <title>Little Wave Esports - Pro Gaming Hub</title>
     <style>
         :root {
             --bg-main: #020617;
             --bg-card: #090d1f;
-            --bg-glass: rgba(9, 13, 31, 0.95);
             --accent-cyan: #00f0ff;
             --accent-pink: #ff0055;
             --accent-green: #22c55e;
             --accent-yellow: #fbbf24;
-            --accent-purple: #a855f7;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --border-color: #1e293b;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: var(--bg-main); color: var(--text-main); padding-bottom: 110px; overflow-x: hidden; }
+        body { background: var(--bg-main); color: var(--text-main); padding-bottom: 100px; overflow-x: hidden; }
 
         /* Top Header Styling */
         .header { background: linear-gradient(135deg, #090d1f, #1e1b4b); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent-cyan); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 25px rgba(0,240,255,0.3); backdrop-filter: blur(12px); }
         .logo { font-size: 20px; font-weight: 900; color: var(--accent-cyan); letter-spacing: 1.5px; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
         .logo span { color: var(--accent-pink); }
-        .header-actions { display: flex; gap: 10px; align-items: center; }
         .wallet-badge { background: #111827; padding: 7px 14px; border-radius: 25px; font-size: 13px; border: 1px solid #374151; color: var(--accent-green); font-weight: bold; display: flex; align-items: center; gap: 6px; cursor: pointer; transition: 0.2s; }
-        .wallet-badge:active { transform: scale(0.95); }
-        .notification-icon { font-size: 18px; cursor: pointer; background: #111827; padding: 8px; border-radius: 50%; border: 1px solid #374151; }
-
-        /* Live Announcement Marquee */
-        .marquee-container { background: #0f172a; border-bottom: 1px solid var(--border-color); color: var(--accent-cyan); font-size: 12px; padding: 7px 0; overflow: hidden; white-space: nowrap; font-weight: bold; }
-        .marquee-content { display: inline-block; animation: marquee 30s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
-
+        
         .container { max-width: 480px; margin: auto; padding: 15px; }
 
         /* App Sections Control Engine */
         .app-section { display: none; }
-        .app-section.active { display: block; animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .app-section.active { display: block; animation: slideUp 0.3s ease-in-out; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Cyberpunk Banner */
-        .cyber-banner { background: linear-gradient(135deg, #2563eb, #7e22ce); border-radius: 20px; padding: 22px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4); border: 1px solid rgba(255,255,255,0.2); position: relative; overflow: hidden; }
-        .cyber-banner h2 { font-size: 22px; margin-bottom: 6px; font-weight: 900; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        .cyber-banner { background: linear-gradient(135deg, #2563eb, #7e22ce); border-radius: 20px; padding: 22px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4); border: 1px solid rgba(255,255,255,0.2); }
+        .cyber-banner h2 { font-size: 22px; margin-bottom: 6px; font-weight: 900; color: #fff; }
         .cyber-banner p { font-size: 12px; opacity: 0.9; line-height: 1.5; color: #e2e8f0; }
 
-        /* Live Room ID Card (Admin Sync Engine) */
-        .live-card { background: linear-gradient(135deg, #111827, #1f2937); border: 2px solid var(--accent-pink); border-radius: 20px; padding: 18px; margin-bottom: 22px; box-shadow: 0 0 35px rgba(255, 0, 85, 0.4); position: relative; }
-        .live-title { color: var(--accent-pink); font-size: 13px; font-weight: bold; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
+        /* Live Room ID Card (Admin Sync) */
+        .live-card { background: linear-gradient(135deg, #111827, #1f2937); border: 2px solid var(--accent-pink); border-radius: 20px; padding: 18px; margin-bottom: 22px; box-shadow: 0 0 35px rgba(255, 0, 85, 0.4); }
+        .live-title { color: var(--accent-pink); font-size: 13px; font-weight: bold; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
         .live-dot { width: 10px; height: 10px; background: var(--accent-pink); border-radius: 50%; animation: pulse 1s infinite; }
         @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.7); } 100% { opacity: 1; transform: scale(1); } }
         
         .detail-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; background: rgba(0,0,0,0.45); padding: 12px 15px; border-radius: 10px; border: 1px solid var(--border-color); align-items: center; }
         .detail-row span:last-child { font-weight: bold; color: var(--accent-cyan); font-family: monospace; font-size: 15px; }
 
-        /* Filter Tabs */
-        .filter-bar { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 12px; margin-bottom: 15px; }
-        .filter-bar::-webkit-scrollbar { display: none; }
-        .filter-btn { background: #111827; border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; white-space: nowrap; transition: 0.2s; }
-        .filter-btn.active { background: var(--accent-cyan); color: var(--bg-main); border-color: var(--accent-cyan); }
-
         /* Section Header */
         .section-header { font-size: 16px; font-weight: bold; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; color: #fff; border-left: 4px solid var(--accent-cyan); padding-left: 10px; }
         
         /* Tournament Match Card */
-        .t-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 18px; padding: 18px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.6); transition: 0.2s; position: relative; }
+        .t-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 18px; padding: 18px; margin-bottom: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.6); }
         .t-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .game-tag { background: rgba(0, 240, 255, 0.12); color: var(--accent-cyan); padding: 5px 12px; border-radius: 8px; font-size: 11px; font-weight: bold; letter-spacing: 0.5px; }
+        .game-tag { background: rgba(0, 240, 255, 0.12); color: var(--accent-cyan); padding: 5px 12px; border-radius: 8px; font-size: 11px; font-weight: bold; }
         .t-name { font-size: 17px; font-weight: bold; margin-bottom: 12px; color: #fff; }
         
         .t-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; font-size: 13px; color: var(--text-muted); background: rgba(255,255,255,0.02); padding: 12px; border-radius: 12px; }
         .t-info-grid div b { color: #fff; display: block; font-size: 14px; margin-top: 2px; }
 
-        .btn-action { width: 100%; background: linear-gradient(135deg, var(--accent-cyan), #0284c7); color: var(--bg-main); border: none; padding: 13px; border-radius: 12px; font-weight: 900; font-size: 14px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: 0.2s; }
-        .btn-action:active { transform: scale(0.97); }
-
-        /* Wallet & Profile Panels */
-        .panel-box { background: var(--bg-card); border-radius: 20px; padding: 24px; text-align: center; border: 1px solid var(--border-color); margin-bottom: 18px; box-shadow: 0 8px 25px rgba(0,0,0,0.5); }
+        .btn-action { width: 100%; background: linear-gradient(135deg, var(--accent-cyan), #0284c7); color: var(--bg-main); border: none; padding: 13px; border-radius: 12px; font-weight: 900; font-size: 14px; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
+        
+        /* Wallet Panel */
+        .panel-box { background: var(--bg-card); border-radius: 20px; padding: 24px; text-align: center; border: 1px solid var(--border-color); margin-bottom: 18px; }
         .panel-box h3 { font-size: 34px; color: var(--accent-green); margin: 12px 0; font-family: monospace; }
         .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
-        .btn-sub { padding: 12px; border-radius: 12px; font-weight: bold; font-size: 14px; border: none; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
+        .btn-sub { padding: 12px; border-radius: 12px; font-weight: bold; font-size: 14px; border: none; cursor: pointer; text-transform: uppercase; }
         .btn-green { background: var(--accent-green); color: #fff; }
         .btn-red { background: var(--accent-pink); color: #fff; }
         
-        .input-box { width: 100%; background: #020617; border: 1px solid var(--border-color); color: #fff; padding: 12px; border-radius: 10px; margin-bottom: 12px; font-size: 14px; }
+        .upi-box { background: rgba(0, 240, 255, 0.05); border: 1px dashed var(--accent-cyan); padding: 12px; border-radius: 10px; margin-top: 12px; font-size: 13px; color: var(--accent-cyan); font-family: monospace; }
 
         /* Leaderboard Items */
         .rank-item { display: flex; align-items: center; justify-content: space-between; background: var(--bg-card); padding: 14px 16px; border-radius: 14px; margin-bottom: 10px; border: 1px solid var(--border-color); }
@@ -96,55 +80,41 @@
         .rank-sub { font-size: 12px; color: var(--text-muted); }
         .rank-prize { color: var(--accent-green); font-weight: bold; font-size: 15px; }
 
-        /* FAQ / Rules Accordions */
-        .faq-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 14px; padding: 15px; margin-bottom: 10px; font-size: 13px; }
-        .faq-q { font-weight: bold; color: var(--accent-cyan); margin-bottom: 5px; }
-        .faq-a { color: var(--text-muted); line-height: 1.4; }
+        /* Toast */
+        #toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: #fff; padding: 12px 24px; border-radius: 30px; font-size: 13px; font-weight: bold; border: 1px solid var(--accent-cyan); display: none; z-index: 2000; }
 
-        /* Toast Notifications */
-        #toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: #fff; padding: 12px 24px; border-radius: 30px; font-size: 13px; font-weight: bold; border: 1px solid var(--accent-cyan); box-shadow: 0 10px 25px rgba(0,0,0,0.8); display: none; z-index: 2000; }
-
-        /* Bottom Fixed Pro App Navigation Bar */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #060913; border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 10px 0; z-index: 1000; box-shadow: 0 -10px 30px rgba(0,0,0,0.9); }
-        .nav-item { text-align: center; color: var(--text-muted); font-size: 11px; text-decoration: none; flex: 1; cursor: pointer; background: none; border: none; transition: 0.2s; }
-        .nav-item.active { color: var(--accent-cyan); font-weight: bold; transform: translateY(-2px); }
+        /* Bottom Nav */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #060913; border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; padding: 10px 0; z-index: 1000; }
+        .nav-item { text-align: center; color: var(--text-muted); font-size: 11px; text-decoration: none; flex: 1; cursor: pointer; background: none; border: none; }
+        .nav-item.active { color: var(--accent-cyan); font-weight: bold; }
         .nav-item div { font-size: 22px; margin-bottom: 3px; }
 
-        .admin-link-box { text-align: center; margin-top: 30px; padding-bottom: 20px; }
-        .admin-link-box a { color: var(--text-muted); font-size: 12px; text-decoration: none; border-bottom: 1px dashed var(--text-muted); }
+        .admin-link { text-align: center; margin-top: 25px; padding-bottom: 20px; }
+        .admin-link a { color: var(--text-muted); font-size: 12px; text-decoration: none; border-bottom: 1px dashed var(--text-muted); }
     </style>
 </head>
 <body>
 
-    <!-- Toast Notification Box -->
-    <div id="toast">Notification Message</div>
+    <div id="toast">Notification</div>
 
-    <!-- Top Navigation Header -->
+    <!-- Header -->
     <div class="header">
         <div class="logo">Little Wave <span>Esports</span></div>
-        <div class="header-actions">
-            <div class="notification-icon" onclick="showToast('No new notifications right now!')">🔔</div>
-            <div class="wallet-badge" onclick="switchSection('wallet', document.querySelectorAll('.nav-item')[3])">
-                💰 <span id="headerBalance">₹50.00</span>
-            </div>
+        <div class="wallet-badge" onclick="switchSection('wallet', document.querySelectorAll('.nav-item')[3])">
+            💰 <span id="headerBalance">₹50.00</span>
         </div>
-    </div>
-
-    <!-- Live Announcement Bar -->
-    <div class="marquee-container">
-        <div class="marquee-content">⚡ Welcome to Little Wave Esports Pro Ultimate Enterprise Hub! Join daily custom matches & win instant cash prizes! 🚀 Admin controlled active rooms updated live 24x7. Fast automated payouts!</div>
     </div>
 
     <div class="container">
         
-        <!-- ================= SECTION 1: HOME DASHBOARD ================= -->
+        <!-- HOME SECTION -->
         <div id="section-home" class="app-section active">
             <div class="cyber-banner">
                 <h2>Play, Compete & Win Cash!</h2>
-                <p>Daily Free Fire Custom Room Battles, High Stakes Scrims & Pro Tournaments with Instant Rewards.</p>
+                <p>Daily Free Fire Custom Room Battles & Pro Tournaments.</p>
             </div>
 
-            <!-- Live Room ID Hub (Synced with Admin Panel) -->
+            <!-- Live Room ID Hub (Admin Controlled) -->
             <div class="live-card">
                 <div class="live-title"><div class="live-dot"></div> Live Custom Room (Admin Control)</div>
                 <div class="detail-row">
@@ -161,20 +131,9 @@
                 </div>
             </div>
 
-            <div class="filter-bar">
-                <button class="filter-btn active" onclick="filterMatches('all')">🔥 All Matches</button>
-                <button class="filter-btn" onclick="filterMatches('solo')">👤 Solo</button>
-                <button class="filter-btn" onclick="filterMatches('duo')">👥 Duo</button>
-                <button class="filter-btn" onclick="filterMatches('squad')">🛡️ Squad</button>
-                <button class="filter-btn" onclick="filterMatches('clash')">⚡ Clash Squad</button>
-            </div>
+            <div class="section-header"><span>🔥 Featured Tournaments</span></div>
 
-            <div class="section-header">
-                <span>🔥 Featured Tournaments</span>
-                <span style="font-size: 12px; color: var(--accent-cyan); cursor: pointer;" onclick="switchSection('matches', document.querySelectorAll('.nav-item')[1])">View All</span>
-            </div>
-
-            <div class="t-card" data-category="squad">
+            <div class="t-card">
                 <div class="t-header">
                     <span class="game-tag">FREE FIRE SQUAD</span>
                     <span style="color: var(--accent-green); font-size: 12px; font-weight: bold;">Filling Fast</span>
@@ -186,143 +145,33 @@
                     <div>Map: <b>Bermuda</b></div>
                     <div>Time: <b>8:00 PM</b></div>
                 </div>
-                <button class="btn-action" onclick="showToast('Successfully Registered for Bermuda Championship!')">Join Match Now</button>
+                <button class="btn-action" onclick="showToast('Successfully Registered!')">Join Match Now</button>
             </div>
 
-            <div class="t-card" data-category="clash">
-                <div class="t-header">
-                    <span class="game-tag">CLASH SQUAD</span>
-                    <span style="color: var(--accent-yellow); font-size: 12px; font-weight: bold;">Starting Soon</span>
-                </div>
-                <div class="t-name">Factory Roof Rush 4v4</div>
-                <div class="t-info-grid">
-                    <div>Prize Pool: <b>₹300</b></div>
-                    <div>Entry Fee: <b>₹10</b></div>
-                    <div>Map: <b>Bermuda</b></div>
-                    <div>Time: <b>9:00 PM</b></div>
-                </div>
-                <button class="btn-action" onclick="showToast('Joined successfully! Deducted ₹10 from wallet.')">Join Match (₹10)</button>
-            </div>
-
-            <div class="t-card" data-category="solo">
-                <div class="t-header">
-                    <span class="game-tag">SOLO CLASSIC</span>
-                    <span style="color: var(--accent-cyan); font-size: 12px; font-weight: bold;">Open</span>
-                </div>
-                <div class="t-name">Purgatory Extreme Solo #55</div>
-                <div class="t-info-grid">
-                    <div>Prize Pool: <b>₹400</b></div>
-                    <div>Entry Fee: <b>₹15</b></div>
-                    <div>Map: <b>Purgatory</b></div>
-                    <div>Time: <b>10:00 PM</b></div>
-                </div>
-                <button class="btn-action" onclick="showToast('Joined successfully! Deducted ₹15 from wallet.')">Join Match (₹15)</button>
-            </div>
-
-            <div class="t-card" data-category="duo">
-                <div class="t-header">
-                    <span class="game-tag">DUO BATTLE</span>
-                    <span style="color: var(--accent-pink); font-size: 12px; font-weight: bold;">Tonight</span>
-                </div>
-                <div class="t-name">Kalahari Duo Warfare #12</div>
-                <div class="t-info-grid">
-                    <div>Prize Pool: <b>₹600</b></div>
-                    <div>Entry Fee: <b>₹20</b></div>
-                    <div>Map: <b>Kalahari</b></div>
-                    <div>Time: <b>10:45 PM</b></div>
-                </div>
-                <button class="btn-action" onclick="showToast('Joined successfully! Deducted ₹20 from wallet.')">Join Match (₹20)</button>
-            </div>
-
-            <div class="admin-link-box">
+            <div class="admin-link">
                 <a href="admin.html">⚙️ Open Admin Control Center</a>
             </div>
         </div>
 
-        <!-- ================= SECTION 2: MATCHES LIST ================= -->
+        <!-- MATCHES SECTION -->
         <div id="section-matches" class="app-section">
-            <div class="section-header"><span>🎮 All Active & Upcoming Battles</span></div>
-            
+            <div class="section-header"><span>🎮 All Active Matches</span></div>
             <div class="t-card">
                 <div class="t-header">
                     <span class="game-tag">SOLO CLASSIC</span>
-                    <span style="color: var(--accent-yellow); font-size: 12px; font-weight: bold;">Live Today</span>
                 </div>
                 <div class="t-name">Purgatory Solo Rush #42</div>
                 <div class="t-info-grid">
                     <div>Prize Pool: <b>₹300</b></div>
                     <div>Entry Fee: <b>₹10</b></div>
-                    <div>Map: <b>Purgatory</b></div>
-                    <div>Time: <b>6:30 PM</b></div>
                 </div>
-                <button class="btn-action" onclick="showToast('Joined successfully! Deducted ₹10 from wallet.')">Join Match (₹10)</button>
-            </div>
-
-            <div class="t-card">
-                <div class="t-header">
-                    <span class="game-tag">SQUAD BATTLE</span>
-                    <span style="color: var(--accent-cyan); font-size: 12px; font-weight: bold;">Tonight</span>
-                </div>
-                <div class="t-name">Kalahari Night War</div>
-                <div class="t-info-grid">
-                    <div>Prize Pool: <b>₹1,000</b></div>
-                    <div>Entry Fee: <b>₹20</b></div>
-                    <div>Map: <b>Kalahari</b></div>
-                    <div>Time: <b>9:15 PM</b></div>
-                </div>
-                <button class="btn-action" onclick="showToast('Joined successfully! Deducted ₹20 from wallet.')">Join Match (₹20)</button>
-            </div>
-
-            <div class="t-card">
-                <div class="t-header">
-                    <span class="game-tag">DUO CLASH</span>
-                    <span style="color: var(--accent-pink); font-size: 12px; font-weight: bold;">Tomorrow</span>
-                </div>
-                <div class="t-name">Alpine Duo Survival</div>
-                <div class="t-info-grid">
-                    <div>Prize Pool: <b>₹400</b></div>
-                    <div>Entry Fee: <b>FREE</b></div>
-                    <div>Map: <b>Alpine</b></div>
-                    <div>Time: <b>5:00 PM</b></div>
-                </div>
-                <button class="btn-action" onclick="showToast('Registered successfully!')">Join Match (Free)</button>
-            </div>
-
-            <div class="t-card">
-                <div class="t-header">
-                    <span class="game-tag">FULL MAP SQUAD</span>
-                    <span style="color: var(--accent-green); font-size: 12px; font-weight: bold;">Upcoming</span>
-                </div>
-                <div class="t-name">Bermuda Grandmaster Scrims</div>
-                <div class="t-info-grid">
-                    <div>Prize Pool: <b>₹1,500</b></div>
-                    <div>Entry Fee: <b>₹50</b></div>
-                    <div>Map: <b>Bermuda</b></div>
-                    <div>Time: <b>10:30 PM</b></div>
-                </div>
-                <button class="btn-action" onclick="showToast('Joined successfully! Deducted ₹50 from wallet.')">Join Match (₹50)</button>
-            </div>
-
-            <div class="t-card">
-                <div class="t-header">
-                    <span class="game-tag">CLASH SQUAD</span>
-                    <span style="color: var(--accent-yellow); font-size: 12px; font-weight: bold;">Tomorrow Night</span>
-                </div>
-                <div class="t-name">Bermuda Clock Tower 4v4 Pro</div>
-                <div class="t-info-grid">
-                    <div>Prize Pool: <b>₹800</b></div>
-                    <div>Entry Fee: <b>₹30</b></div>
-                    <div>Map: <b>Bermuda</b></div>
-                    <div>Time: <b>11:00 PM</b></div>
-                </div>
-                <button class="btn-action" onclick="showToast('Joined successfully! Deducted ₹30 from wallet.')">Join Match (₹30)</button>
+                <button class="btn-action" onclick="showToast('Joined match successfully!')">Join Match (₹10)</button>
             </div>
         </div>
 
-        <!-- ================= SECTION 3: LEADERBOARD ================= -->
+        <!-- LEADERBOARD SECTION -->
         <div id="section-leaderboard" class="app-section">
-            <div class="section-header"><span>🏆 Top Pro Killers & Winners</span></div>
-            
+            <div class="section-header"><span>🏆 Top Pro Killers</span></div>
             <div class="rank-item" style="border: 1px solid var(--accent-yellow);">
                 <div class="rank-number">#1</div>
                 <div class="rank-info">
@@ -331,198 +180,63 @@
                 </div>
                 <div class="rank-prize">₹2,400</div>
             </div>
-
-            <div class="rank-item">
-                <div class="rank-number">#2</div>
-                <div class="rank-info">
-                    <div class="rank-name">Shadow_Killer</div>
-                    <div class="rank-sub">38 Kills • 11 Wins</div>
-                </div>
-                <div class="rank-prize">₹1,500</div>
-            </div>
-
-            <div class="rank-item">
-                <div class="rank-number">#3</div>
-                <div class="rank-info">
-                    <div class="rank-name">Devil_FF</div>
-                    <div class="rank-sub">30 Kills • 8 Wins</div>
-                </div>
-                <div class="rank-prize">₹900</div>
-            </div>
-
-            <div class="rank-item">
-                <div class="rank-number">#4</div>
-                <div class="rank-info">
-                    <div class="rank-name">Alpha_Vortex</div>
-                    <div class="rank-sub">25 Kills • 6 Wins</div>
-                </div>
-                <div class="rank-prize">₹500</div>
-            </div>
-
-            <div class="rank-item">
-                <div class="rank-number">#5</div>
-                <div class="rank-info">
-                    <div class="rank-name">Silent_Sniper</div>
-                    <div class="rank-sub">22 Kills • 5 Wins</div>
-                </div>
-                <div class="rank-prize">₹300</div>
-            </div>
-
-            <div class="rank-item">
-                <div class="rank-number">#6</div>
-                <div class="rank-info">
-                    <div class="rank-name">Nexus_Gaming</div>
-                    <div class="rank-sub">20 Kills • 4 Wins</div>
-                </div>
-                <div class="rank-prize">₹200</div>
-            </div>
-
-            <div class="rank-item">
-                <div class="rank-number">#7</div>
-                <div class="rank-info">
-                    <div class="rank-name">Viper_99</div>
-                    <div class="rank-sub">18 Kills • 3 Wins</div>
-                </div>
-                <div class="rank-prize">₹150</div>
-            </div>
-
-            <div class="rank-item">
-                <div class="rank-number">#8</div>
-                <div class="rank-info">
-                    <div class="rank-name">Phoenix_Fire</div>
-                    <div class="rank-sub">15 Kills • 2 Wins</div>
-                </div>
-                <div class="rank-prize">₹100</div>
-            </div>
         </div>
 
-        <!-- ================= SECTION 4: WALLET ================= -->
+        <!-- WALLET SECTION (Linked with your real FamApp UPI) -->
         <div id="section-wallet" class="app-section">
-            <div class="section-header"><span>💰 My Wallet & Balance</span></div>
+            <div class="section-header"><span>💰 My Wallet & Deposit</span></div>
             
             <div class="panel-box">
-                <p style="color: var(--text-muted); font-size: 13px;">Available Cash Balance</p>
+                <p style="color: var(--text-muted); font-size: 13px;">Available Balance</p>
                 <h3 id="walletBalanceDisplay">₹50.00</h3>
-                <div class="btn-grid">
+                
+                <div class="upi-box">
+                    <b>Official FamApp UPI (Rishu Dubey):</b><br>
+                    <span>9580881350@fam</span>[span_2](start_span)[span_2](end_span)
+                </div>
+
+                <div class="btn-grid" style="margin-top: 15px;">
                     <button class="btn-sub btn-green" onclick="addMoney()">Add Money</button>
-                    <button class="btn-sub btn-red" onclick="showToast('Minimum withdrawal threshold is ₹100')">Withdraw</button>
+                    <button class="btn-sub btn-red" onclick="showToast('Min withdrawal limit is ₹100')">Withdraw</button>
                 </div>
-            </div>
-
-            <!-- Coupon Code Section -->
-            <div class="panel-box" style="padding: 15px; text-align: left;">
-                <p style="font-size: 13px; font-weight: bold; margin-bottom: 8px; color: var(--accent-cyan);">🎁 Have a Promo / Coupon Code?</p>
-                <input type="text" id="couponInput" class="input-box" placeholder="Enter coupon code (e.g. WAVE50)">
-                <button class="btn-action" style="padding: 10px;" onclick="applyCoupon()">Apply Coupon</button>
-            </div>
-
-            <div class="section-header" style="font-size: 14px; margin-top: 20px;"><span>📜 Transaction History</span></div>
-            <div style="background: rgba(255,255,255,0.02); padding: 12px 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-color); margin-bottom: 8px;">
-                <div>
-                    <div style="font-weight: bold; font-size: 13px;">Welcome Bonus</div>
-                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Today, 10:00 AM</div>
-                </div>
-                <div style="color: var(--accent-green); font-weight: bold; font-size: 14px;">+₹50.00</div>
-            </div>
-            <div style="background: rgba(255,255,255,0.02); padding: 12px 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-color); margin-bottom: 8px;">
-                <div>
-                    <div style="font-weight: bold; font-size: 13px;">Tournament Entry Fee</div>
-                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">Yesterday, 8:15 PM</div>
-                </div>
-                <div style="color: var(--accent-pink); font-weight: bold; font-size: 14px;">-₹10.00</div>
-            </div>
-            <div style="background: rgba(255,255,255,0.02); padding: 12px 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-color); margin-bottom: 8px;">
-                <div>
-                    <div style="font-weight: bold; font-size: 13px;">Prize Winnings Added</div>
-                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">2 days ago</div>
-                </div>
-                <div style="color: var(--accent-green); font-weight: bold; font-size: 14px;">+₹150.00</div>
-            </div>
-            <div style="background: rgba(255,255,255,0.02); padding: 12px 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border-color);">
-                <div>
-                    <div style="font-weight: bold; font-size: 13px;">Wallet Deposit (UPI)</div>
-                    <div style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">3 days ago</div>
-                </div>
-                <div style="color: var(--accent-green); font-weight: bold; font-size: 14px;">+₹100.00</div>
             </div>
         </div>
 
-        <!-- ================= SECTION 5: PROFILE & SUPPORT ================= -->
+        <!-- PROFILE SECTION -->
         <div id="section-profile" class="app-section">
-            <div class="section-header"><span>👤 Gamer Profile & Stats</span></div>
-            
+            <div class="section-header"><span>👤 Gamer Profile</span></div>
             <div class="panel-box" style="text-align: left; padding: 20px;">
-                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;">
-                    <div style="width: 55px; height: 55px; background: var(--accent-cyan); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: bold; color: var(--bg-main);">R</div>
-                    <div>
-                        <h4 style="font-size: 17px; color: #fff;">Gamer_Rishu</h4>
-                        <p style="font-size: 12px; color: var(--text-muted);">UID: 9876543210</p>
-                    </div>
-                </div>
-                <p style="font-size: 14px; margin-bottom: 10px;">🎮 <b>Game Platform:</b> Free Fire MAX</p>
-                <p style="font-size: 14px; margin-bottom: 10px;">📊 <b>Matches Enrolled:</b> 18</p>
-                <p style="font-size: 14px; margin-bottom: 10px;">🥇 <b>Tournaments Crowned:</b> 4</p>
-                <p style="font-size: 14px;">⚡ <b>Account Status:</b> <span style="color: var(--accent-green);">Fully Active & Verified</span></p>
-            </div>
-
-            <!-- Support Ticket Box -->
-            <div class="panel-box" style="padding: 15px; text-align: left;">
-                <p style="font-size: 14px; font-weight: bold; margin-bottom: 10px; color: var(--accent-cyan);">💬 Contact Support / Report Issue</p>
-                <textarea id="supportMsg" class="input-box" rows="3" placeholder="Describe your issue or query here..."></textarea>
-                <button class="btn-action" style="padding: 10px;" onclick="submitSupport()">Send to Admin</button>
-            </div>
-
-            <div class="section-header" style="font-size: 14px; margin-top: 20px;"><span>❓ Help & Support / Rules</span></div>
-            <div class="faq-box">
-                <div class="faq-q">How to join custom rooms?</div>
-                <div class="faq-a">Room ID and Password will appear live on the Home screen 10 minutes before the match starts. Copy it and join in-game.</div>
-            </div>
-            <div class="faq-box">
-                <div class="faq-q">When are winnings distributed?</div>
-                <div class="faq-a">Winnings are automatically credited to your app wallet within 30 minutes of match completion.</div>
-            </div>
-            <div class="faq-box">
-                <div class="faq-q">Is team collaboration allowed in solo matches?</div>
-                <div class="faq-a">No! Teaming in solo matches leads to permanent account suspension and wallet balance forfeiture.</div>
-            </div>
-            <div class="faq-box">
-                <div class="faq-q">How to withdraw my winning cash?</div>
-                <div class="faq-a">Go to the Wallet section, click withdraw if your balance is above ₹100, and enter your UPI ID.</div>
+                <h4 style="color: #fff; font-size: 18px; margin-bottom: 5px;">Rishu Dubey</h4>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">FamApp UPI: 9580881350@fam</p>[span_3](start_span)[span_3](end_span)
+                <p style="font-size: 14px;">⚡ Status: <span style="color: var(--accent-green);">Verified Admin</span></p>
             </div>
         </div>
 
     </div>
 
-    <!-- Bottom Fixed Pro App Navigation Bar -->
+    <!-- Bottom Navigation Bar -->
     <div class="bottom-nav">
         <button class="nav-item active" onclick="switchSection('home', this)">
-            <div>🏠</div>
-            <span>Home</span>
+            <div>🏠</div><span>Home</span>
         </button>
         <button class="nav-item" onclick="switchSection('matches', this)">
-            <div>🎮</div>
-            <span>Matches</span>
+            <div>🎮</div><span>Matches</span>
         </button>
         <button class="nav-item" onclick="switchSection('leaderboard', this)">
-            <div>🏆</div>
-            <span>Ranks</span>
+            <div>🏆</div><span>Ranks</span>
         </button>
         <button class="nav-item" onclick="switchSection('wallet', this)">
-            <div>💰</div>
-            <span>Wallet</span>
+            <div>💰</div><span>Wallet</span>
         </button>
         <button class="nav-item" onclick="switchSection('profile', this)">
-            <div>👤</div>
-            <span>Profile</span>
+            <div>👤</div><span>Profile</span>
         </button>
     </div>
 
-    <!-- Full App Interactive Script Engine -->
     <script>
         function switchSection(sectionId, element) {
             document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            
             document.getElementById('section-' + sectionId).classList.add('active');
             element.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -535,59 +249,20 @@
             setTimeout(() => { t.style.display = 'none'; }, 3000);
         }
 
-        function filterMatches(category) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-
-            let cards = document.querySelectorAll('#section-home .t-card');
-            cards.forEach(card => {
-                if (category === 'all' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
         function addMoney() {
-            let amt = prompt("Enter amount to add via UPI / Gateway (₹):", "100");
+            let amt = prompt("Enter amount paid to 9580881350@fam (₹):", "100");[span_4](start_span)[span_4](end_span)
             if(amt && !isNaN(amt) && amt > 0) {
-                showToast("Successfully added ₹" + amt + " to your gaming wallet!");
+                showToast("Deposit request submitted for ₹" + amt);
                 let newBal = 50 + parseInt(amt);
                 document.getElementById('headerBalance').innerText = "₹" + newBal + ".00";
                 document.getElementById('walletBalanceDisplay').innerText = "₹" + newBal + ".00";
             }
         }
 
-        function applyCoupon() {
-            let code = document.getElementById('couponInput').value.trim().toUpperCase();
-            if (code === "WAVE50" || code === "RISHU50") {
-                showToast("🎉 Coupon applied successfully! ₹50 added to wallet.");
-                document.getElementById('couponInput').value = "";
-                let headerBal = document.getElementById('headerBalance');
-                let current = parseInt(headerBal.innerText.replace('₹', '')) + 50;
-                headerBal.innerText = "₹" + current + ".00";
-                document.getElementById('walletBalanceDisplay').innerText = "₹" + current + ".00";
-            } else {
-                showToast("❌ Invalid or expired coupon code!");
-            }
-        }
-
-        function submitSupport() {
-            let msg = document.getElementById('supportMsg').value.trim();
-            if(msg) {
-                showToast("✅ Support ticket submitted successfully! Admin will respond soon.");
-                document.getElementById('supportMsg').value = "";
-            } else {
-                showToast("⚠️ Please write your message first.");
-            }
-        }
-
-        // Real-time synchronization with Admin Panel (`admin.html`)
-        document.getElementById('displayTourney').innerText = localStorage.getItem('tourneyName') || "No Active Tournament Scheduled";
+        // Admin Sync Data
+        document.getElementById('displayTourney').innerText = localStorage.getItem('tourneyName') || "No Active Tournament";
         document.getElementById('displayId').innerText = localStorage.getItem('roomID') || "Awaiting Admin Update";
         document.getElementById('displayPass').innerText = localStorage.getItem('roomPass') || "Awaiting Admin Update";
     </script>
-
 </body>
 </html>
