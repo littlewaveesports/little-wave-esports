@@ -1,59 +1,83 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Little Wave Esports - Pro App</title>
+    <title>Little Wave Esports - Pro Gaming Hub</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: #05070d; color: #ffffff; padding-bottom: 85px; }
+        body { background: #030712; color: #f3f4f6; padding-bottom: 90px; }
         
         /* App Header */
-        .header { background: linear-gradient(135deg, #0f172a, #1e1b4b); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #00d2ff; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,210,255,0.2); }
-        .logo { font-size: 18px; font-weight: 900; color: #00d2ff; letter-spacing: 1px; text-transform: uppercase; }
+        .header { background: linear-gradient(135deg, #0f172a, #1e1b4b); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #00f0ff; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,240,255,0.25); }
+        .logo { font-size: 19px; font-weight: 900; color: #00f0ff; letter-spacing: 1.2px; text-transform: uppercase; }
         .logo span { color: #ff0055; }
-        .wallet-badge { background: #111827; padding: 6px 12px; border-radius: 20px; font-size: 13px; border: 1px solid #374151; color: #22c55e; font-weight: bold; display: flex; align-items: center; gap: 5px; text-decoration: none; }
+        .wallet-badge { background: #111827; padding: 7px 14px; border-radius: 25px; font-size: 13px; border: 1px solid #374151; color: #22c55e; font-weight: bold; display: flex; align-items: center; gap: 6px; cursor: pointer; }
 
         .container { max-width: 480px; margin: auto; padding: 15px; }
 
+        /* Sections / Tabs Control */
+        .app-page { display: none; }
+        .app-page.active { display: block; animation: fadeIn 0.25s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
         /* Banner */
-        .banner { background: linear-gradient(135deg, #2563eb, #9333ea); border-radius: 16px; padding: 20px; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4); border: 1px solid rgba(255,255,255,0.2); }
-        .banner h2 { font-size: 20px; margin-bottom: 6px; }
-        .banner p { font-size: 12px; opacity: 0.9; }
+        .banner { background: linear-gradient(135deg, #2563eb, #7c3aed); border-radius: 18px; padding: 22px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4); border: 1px solid rgba(255,255,255,0.15); position: relative; overflow: hidden; }
+        .banner h2 { font-size: 21px; margin-bottom: 6px; font-weight: 900; }
+        .banner p { font-size: 12px; opacity: 0.9; line-height: 1.4; }
 
         /* Live Room ID Card (Admin Controlled) */
-        .live-card { background: linear-gradient(135deg, #111827, #1f2937); border: 2px solid #ff0055; border-radius: 16px; padding: 16px; margin-bottom: 20px; box-shadow: 0 0 20px rgba(255, 0, 85, 0.25); }
-        .live-title { color: #ff0055; font-size: 13px; font-weight: bold; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-        .live-dot { width: 9px; height: 9px; background: #ff0055; border-radius: 50%; animation: pulse 1.2s infinite; }
-        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+        .live-card { background: linear-gradient(135deg, #111827, #1f2937); border: 2px solid #ff0055; border-radius: 18px; padding: 18px; margin-bottom: 22px; box-shadow: 0 0 25px rgba(255, 0, 85, 0.3); }
+        .live-title { color: #ff0055; font-size: 13px; font-weight: bold; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .live-dot { width: 10px; height: 10px; background: #ff0055; border-radius: 50%; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.75); } 100% { opacity: 1; transform: scale(1); } }
         
-        .detail-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; background: rgba(0,0,0,0.3); padding: 10px 14px; border-radius: 8px; border: 1px solid #374151; }
-        .detail-row span:last-child { font-weight: bold; color: #00d2ff; }
+        .detail-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; background: rgba(0,0,0,0.4); padding: 11px 15px; border-radius: 10px; border: 1px solid #374151; }
+        .detail-row span:last-child { font-weight: bold; color: #00f0ff; font-family: monospace; font-size: 15px; }
 
-        /* Section Heading */
-        .section-title { font-size: 15px; font-weight: bold; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; color: #e2e8f0; }
+        /* Section Titles */
+        .section-title { font-size: 16px; font-weight: bold; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; color: #f8fafc; }
         
-        /* Tournament Card */
-        .t-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 14px; padding: 16px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .t-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .game-tag { background: rgba(0, 210, 255, 0.1); color: #00d2ff; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: bold; }
-        .t-name { font-size: 16px; font-weight: bold; margin-bottom: 10px; }
+        /* Tournament & Match Cards */
+        .t-card { background: #0b132b; border: 1px solid #1e293b; border-radius: 16px; padding: 18px; margin-bottom: 16px; box-shadow: 0 6px 15px rgba(0,0,0,0.6); transition: 0.2s; }
+        .t-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .game-tag { background: rgba(0, 240, 255, 0.12); color: #00f0ff; padding: 5px 12px; border-radius: 8px; font-size: 11px; font-weight: bold; letter-spacing: 0.5px; }
+        .t-name { font-size: 17px; font-weight: bold; margin-bottom: 12px; color: #fff; }
         
-        .t-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; font-size: 13px; color: #94a3b8; }
-        .t-info-grid div b { color: #fff; display: block; font-size: 14px; }
+        .t-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; font-size: 13px; color: #94a3b8; background: rgba(255,255,255,0.02); padding: 10px; border-radius: 10px; }
+        .t-info-grid div b { color: #fff; display: block; font-size: 14px; margin-top: 2px; }
 
-        .join-btn { width: 100%; background: linear-gradient(135deg, #00d2ff, #0284c7); color: #05070d; border: none; padding: 12px; border-radius: 8px; font-weight: 900; font-size: 14px; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
+        .join-btn { width: 100%; background: linear-gradient(135deg, #00f0ff, #0284c7); color: #030712; border: none; padding: 13px; border-radius: 10px; font-weight: 900; font-size: 14px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: 0.2s; }
         .join-btn:active { transform: scale(0.97); }
 
-        /* Bottom Navigation Bar (Real Multi-Page Links) */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #090d16; border-top: 1px solid #1e293b; display: flex; justify-content: space-around; padding: 10px 0; z-index: 1000; box-shadow: 0 -5px 20px rgba(0,0,0,0.8); }
-        .nav-item { text-align: center; color: #64748b; font-size: 11px; text-decoration: none; flex: 1; cursor: pointer; }
-        .nav-item.active { color: #00d2ff; font-weight: bold; }
-        .nav-item div { font-size: 20px; margin-bottom: 2px; }
+        /* Wallet & Profile Panels */
+        .panel-box { background: #0b132b; border-radius: 18px; padding: 24px; text-align: center; border: 1px solid #1e293b; margin-bottom: 18px; }
+        .panel-box h3 { font-size: 32px; color: #22c55e; margin: 12px 0; font-family: monospace; }
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
+        .action-btn { padding: 12px; border-radius: 10px; font-weight: bold; font-size: 14px; border: none; cursor: pointer; }
+        .btn-green { background: #22c55e; color: #fff; }
+        .btn-red { background: #ef4444; color: #fff; }
 
-        .admin-link-box { text-align: center; margin-top: 30px; padding-bottom: 20px; }
+        /* Leaderboard Items */
+        .lb-item { display: flex; align-items: center; justify-content: space-between; background: #0b132b; padding: 14px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #1e293b; }
+        .lb-rank { font-weight: bold; width: 30px; color: #fbbf24; font-size: 16px; }
+        .lb-info { flex: 1; margin-left: 10px; }
+        .lb-name { font-weight: bold; font-size: 14px; color: #fff; }
+        .lb-sub { font-size: 12px; color: #94a3b8; }
+        .lb-prize { color: #22c55e; font-weight: bold; font-size: 14px; }
+
+        /* Transaction History */
+        .tx-item { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.03); padding: 12px 14px; border-radius: 10px; margin-bottom: 8px; font-size: 13px; }
+        .tx-title { font-weight: bold; color: #fff; }
+        .tx-date { font-size: 11px; color: #94a3b8; margin-top: 2px; }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #060913; border-top: 1px solid #1e293b; display: flex; justify-content: space-around; padding: 10px 0; z-index: 1000; box-shadow: 0 -10px 25px rgba(0,0,0,0.9); }
+        .nav-item { text-align: center; color: #64748b; font-size: 11px; text-decoration: none; flex: 1; cursor: pointer; background: none; border: none; }
+        .nav-item.active { color: #00f0ff; font-weight: bold; }
+        .nav-item div { font-size: 21px; margin-bottom: 3px; }
+
+        .admin-link-box { text-align: center; margin-top: 25px; padding-bottom: 15px; }
         .admin-link-box a { color: #64748b; font-size: 12px; text-decoration: none; border-bottom: 1px dashed #64748b; }
     </style>
 </head>
@@ -62,82 +86,221 @@
     <!-- App Header -->
     <div class="header">
         <div class="logo">Little Wave <span>Esports</span></div>
-        <a href="wallet.html" class="wallet-badge">💰 ₹50.00</a>
+        <div class="wallet-badge" onclick="switchTab('wallet', document.querySelectorAll('.nav-item')[2])">
+            💰 <span id="headerBalance">₹50.00</span>
+        </div>
     </div>
 
     <div class="container">
         
-        <!-- Top Banner -->
-        <div class="banner">
-            <h2>Play & Win Real Cash!</h2>
-            <p>Join Daily Free Fire Custom Tournaments & Win Exciting Prizes.</p>
+        <!-- ================= PAGE 1: HOME ================= -->
+        <div id="tab-home" class="app-page active">
+            <div class="banner">
+                <h2>Play & Win Real Cash!</h2>
+                <p>Join Daily Free Fire Custom Tournaments, Clash Squad Battles & Pro Scrims.</p>
+            </div>
+
+            <!-- Live Room ID Card (Synced with Admin Panel) -->
+            <div class="live-card">
+                <div class="live-title"><div class="live-dot"></div> Live Custom Room (Admin Control)</div>
+                <div class="detail-row">
+                    <span>Tournament:</span>
+                    <span id="displayTourney">Loading...</span>
+                </div>
+                <div class="detail-row">
+                    <span>Room ID:</span>
+                    <span id="displayId" style="color: #ff0055;">Not Updated</span>
+                </div>
+                <div class="detail-row">
+                    <span>Password:</span>
+                    <span id="displayPass" style="color: #ff0055;">Not Updated</span>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <span>🔥 Featured Tournaments</span>
+                <span style="font-size: 12px; color: #00f0ff; cursor: pointer;" onclick="switchTab('matches', document.querySelectorAll('.nav-item')[1])">View All</span>
+            </div>
+
+            <div class="t-card">
+                <div class="t-header">
+                    <span class="game-tag">FREE FIRE SQUAD</span>
+                    <span style="color: #22c55e; font-size: 12px; font-weight: bold;">Filling Fast</span>
+                </div>
+                <div class="t-name">Bermuda Pro Championship #101</div>
+                <div class="t-info-grid">
+                    <div>Prize Pool: <b>₹500</b></div>
+                    <div>Entry Fee: <b>FREE</b></div>
+                    <div>Map: <b>Bermuda</b></div>
+                    <div>Time: <b>8:00 PM</b></div>
+                </div>
+                <button class="join-btn" onclick="alert('Successfully Registered for Tournament!')">Join Match Now</button>
+            </div>
+
+            <div class="admin-link-box">
+                <a href="admin.html">⚙️ Open Admin Control Panel</a>
+            </div>
         </div>
 
-        <!-- Live Match Card (Controlled from Admin Panel) -->
-        <div class="live-card">
-            <div class="live-title"><div class="live-dot"></div> Live Custom Room Details</div>
-            <div class="detail-row">
-                <span>Tournament:</span>
-                <span id="displayTourney">Loading...</span>
+        <!-- ================= PAGE 2: MATCHES ================= -->
+        <div id="tab-matches" class="app-page">
+            <div class="section-title"><span>🎮 All Active & Upcoming Matches</span></div>
+            
+            <div class="t-card">
+                <div class="t-header">
+                    <span class="game-tag">SOLO CLASSIC</span>
+                    <span style="color: #fbbf24; font-size: 12px; font-weight: bold;">Live Today</span>
+                </div>
+                <div class="t-name">Purgatory Solo Rush #42</div>
+                <div class="t-info-grid">
+                    <div>Prize Pool: <b>₹300</b></div>
+                    <div>Entry Fee: <b>₹10</b></div>
+                    <div>Map: <b>Purgatory</b></div>
+                    <div>Time: <b>6:30 PM</b></div>
+                </div>
+                <button class="join-btn" onclick="alert('Joined successfully! Deducted ₹10 from wallet.')">Join Match (₹10)</button>
             </div>
-            <div class="detail-row">
-                <span>Room ID:</span>
-                <span id="displayId" style="color: #ff0055;">Not Updated</span>
-            </div>
-            <div class="detail-row">
-                <span>Password:</span>
-                <span id="displayPass" style="color: #ff0055;">Not Updated</span>
+
+            <div class="t-card">
+                <div class="t-header">
+                    <span class="game-tag">SQUAD BATTLE</span>
+                    <span style="color: #00f0ff; font-size: 12px; font-weight: bold;">Tonight</span>
+                </div>
+                <div class="t-name">Kalahari Night War</div>
+                <div class="t-info-grid">
+                    <div>Prize Pool: <b>₹1,000</b></div>
+                    <div>Entry Fee: <b>₹20</b></div>
+                    <div>Map: <b>Kalahari</b></div>
+                    <div>Time: <b>9:15 PM</b></div>
+                </div>
+                <button class="join-btn" onclick="alert('Joined successfully! Deducted ₹20 from wallet.')">Join Match (₹20)</button>
             </div>
         </div>
 
-        <div class="section-title">
-            <span>🔥 Featured Tournaments</span>
+        <!-- ================= PAGE 3: LEADERBOARD ================= -->
+        <div id="tab-leaderboard" class="app-page">
+            <div class="section-title"><span>🏆 Top Players Leaderboard</span></div>
+            
+            <div class="lb-item" style="border: 1px solid #fbbf24;">
+                <div class="lb-rank">#1</div>
+                <div class="lb-info">
+                    <div class="lb-name">🔥 Gamer_Rishu</div>
+                    <div class="lb-sub">42 Kills • 15 Wins</div>
+                </div>
+                <div class="lb-prize">₹2,400</div>
+            </div>
+
+            <div class="lb-item">
+                <div class="lb-rank">#2</div>
+                <div class="lb-info">
+                    <div class="lb-name">Shadow_Killer</div>
+                    <div class="lb-sub">38 Kills • 11 Wins</div>
+                </div>
+                <div class="lb-prize">₹1,500</div>
+            </div>
+
+            <div class="lb-item">
+                <div class="lb-rank">#3</div>
+                <div class="lb-info">
+                    <div class="lb-name">Devil_FF</div>
+                    <div class="lb-sub">30 Kills • 8 Wins</div>
+                </div>
+                <div class="lb-prize">₹900</div>
+            </div>
         </div>
 
-        <div class="t-card">
-            <div class="t-header">
-                <span class="game-tag">FREE FIRE SQUAD</span>
-                <span style="color: #22c55e; font-size: 12px; font-weight: bold;">Filling Fast</span>
+        <!-- ================= PAGE 4: WALLET ================= -->
+        <div id="tab-wallet" class="app-page">
+            <div class="section-title"><span>💰 My Wallet & Transactions</span></div>
+            
+            <div class="panel-box">
+                <p style="color: #94a3b8; font-size: 13px;">Available Balance</p>
+                <h3 id="walletBalanceDisplay">₹50.00</h3>
+                <div class="btn-grid">
+                    <button class="action-btn btn-green" onclick="addMoney()">Add Money</button>
+                    <button class="action-btn btn-red" onclick="alert('Minimum withdrawal limit is ₹100')">Withdraw</button>
+                </div>
             </div>
-            <div class="t-name">Bermuda Pro Championship #101</div>
-            <div class="t-info-grid">
-                <div>Prize Pool: <b>₹500</b></div>
-                <div>Entry Fee: <b>FREE</b></div>
-                <div>Map: <b>Bermuda</b></div>
-                <div>Time: <b>8:00 PM</b></div>
+
+            <div class="section-title" style="font-size: 14px; margin-top: 20px;"><span>📜 Recent Transactions</span></div>
+            <div class="tx-item">
+                <div>
+                    <div class="tx-title">Welcome Bonus</div>
+                    <div class="tx-date">Today, 10:00 AM</div>
+                </div>
+                <div style="color: #22c55e; font-weight: bold;">+₹50.00</div>
             </div>
-            <button class="join-btn" onclick="alert('Successfully Registered for Tournament!')">Join Match</button>
         </div>
 
-        <!-- Secret Admin Link -->
-        <div class="admin-link-box">
-            <a href="admin.html">⚙️ Open Admin Control Panel (Secret)</a>
+        <!-- ================= PAGE 5: PROFILE ================= -->
+        <div id="tab-profile" class="app-page">
+            <div class="section-title"><span>👤 Player Account Profile</span></div>
+            
+            <div class="panel-box" style="text-align: left; padding: 20px;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #1e293b; padding-bottom: 15px;">
+                    <div style="width: 50px; height: 50px; background: #00f0ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; color: #030712;">R</div>
+                    <div>
+                        <h4 style="font-size: 16px; color: #fff;">Gamer_Rishu</h4>
+                        <p style="font-size: 12px; color: #94a3b8;">UID: 9876543210</p>
+                    </div>
+                </div>
+                <p style="font-size: 14px; margin-bottom: 10px;">🎮 <b>Game:</b> Free Fire MAX</p>
+                <p style="font-size: 14px; margin-bottom: 10px;">📊 <b>Total Matches Played:</b> 18</p>
+                <p style="font-size: 14px; margin-bottom: 10px;">🥇 <b>Tournaments Won:</b> 4</p>
+                <p style="font-size: 14px;">⚡ <b>Status:</b> <span style="color: #22c55e;">Verified Pro Player</span></p>
+            </div>
         </div>
 
     </div>
 
-    <!-- Bottom App Navigation Bar (Links to separate pages) -->
+    <!-- Bottom App Navigation Bar -->
     <div class="bottom-nav">
-        <a href="index.html" class="nav-item active">
+        <button class="nav-item active" onclick="switchTab('home', this)">
             <div>🏠</div>
             <span>Home</span>
-        </a>
-        <a href="matches.html" class="nav-item">
+        </button>
+        <button class="nav-item" onclick="switchTab('matches', this)">
             <div>🎮</div>
             <span>Matches</span>
-        </a>
-        <a href="wallet.html" class="nav-item">
+        </button>
+        <button class="nav-item" onclick="switchTab('leaderboard', this)">
+            <div>🏆</div>
+            <span>Ranks</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('wallet', this)">
             <div>💰</div>
             <span>Wallet</span>
-        </a>
-        <a href="profile.html" class="nav-item">
+        </button>
+        <button class="nav-item" onclick="switchTab('profile', this)">
             <div>👤</div>
             <span>Profile</span>
-        </a>
+        </button>
     </div>
 
-    <!-- Script to load Room ID from Admin Panel -->
+    <!-- Core App Script & Admin Sync Logic -->
     <script>
+        function switchTab(tabId, element) {
+            // Hide all tabs
+            document.querySelectorAll('.app-page').forEach(p => p.classList.remove('active'));
+            // Remove active from nav buttons
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById('tab-' + tabId).classList.add('active');
+            element.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function addMoney() {
+            let amount = prompt("Enter amount to add (₹):", "100");
+            if(amount && !isNaN(amount)) {
+                alert("Successfully added ₹" + amount + " to wallet!");
+                document.getElementById('headerBalance').innerText = "₹" + (50 + parseInt(amount)) + ".00";
+                document.getElementById('walletBalanceDisplay').innerText = "₹" + (50 + parseInt(amount)) + ".00";
+            }
+        }
+
+        // Live fetch data from Admin Panel (localStorage)
         document.getElementById('displayTourney').innerText = localStorage.getItem('tourneyName') || "No Active Tournament";
         document.getElementById('displayId').innerText = localStorage.getItem('roomID') || "Yet to be updated";
         document.getElementById('displayPass').innerText = localStorage.getItem('roomPass') || "Yet to be updated";
@@ -145,3 +308,4 @@
 
 </body>
 </html>
+
