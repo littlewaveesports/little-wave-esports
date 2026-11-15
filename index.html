@@ -1,124 +1,36 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LITTLE WAVE ESPORTS</title>
-<style>
-*{box-sizing:border-box}
-body{
- margin:0;
- background:#080d18;
- color:white;
- font-family:Arial,sans-serif;
-}
-header{
- padding:24px 18px;
- background:linear-gradient(135deg,#111c35,#172e55);
- border-bottom:2px solid #27baff;
-}
-.logo{font-size:27px;font-weight:900}
-.logo span{color:#28baff}
-header p{color:#a9bedc;font-size:12px}
-.container{padding:18px}
-h2{font-size:19px}
-.hero{
- padding:23px;
- border-radius:16px;
- background:linear-gradient(135deg,#163a68,#10152d);
- margin-bottom:24px;
-}
-.hero h1{font-size:27px}
-.hero p{color:#b9cce5}
-.btn{
- background:#168df5;
- border:0;
- color:white;
- padding:12px 18px;
- border-radius:9px;
- font-weight:bold;
-}
-.card{
- background:#121c30;
- border:1px solid #253958;
- padding:17px;
- border-radius:14px;
- margin:13px 0;
-}
-.tag{color:#35c1ff;font-size:12px;font-weight:bold}
-.card p{color:#b7c6dc;font-size:14px}
-nav{
- position:fixed;
- bottom:0;
- left:0;
- width:100%;
- display:flex;
- justify-content:space-around;
- padding:16px 4px;
- background:#111a2b;
- border-top:1px solid #293b59;
- font-size:12px;
-}
-nav span{color:#a9c5e8}
-footer{height:75px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LITTLE WAVE ESPORTS</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #080d18; color: white; padding: 20px; margin: 0; }
+        .container { max-width: 500px; margin: auto; background: #111a2e; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        h2 { text-align: center; color: #00d2ff; }
+        .card { background: #1a2642; padding: 15px; border-radius: 8px; margin-top: 15px; border: 1px solid #2a3b63; }
+        .admin-link { display: block; text-align: center; margin-top: 20px; color: #00d2ff; text-decoration: none; font-size: 14px; }
+    </style>
 </head>
 <body>
-<header>
- <div class="logo">LITTLE <span>WAVE</span></div>
- <div style="font-weight:bold;letter-spacing:3px">ESPORTS</div>
- <p>PLAY • COMPETE • CONQUER</p>
-</header>
 
 <div class="container">
- <section class="hero">
-  <h1>WELCOME, GAMER!</h1>
-  <p>Your Battle. Your Glory. Your Arena.</p>
-  <button class="btn" onclick="document.getElementById('tournaments').scrollIntoView()">Explore Tournaments</button>
- </section>
-
- <h2>🔥 Upcoming Tournaments</h2>
- <div id="tournaments">
-  <div class="card">
-   <div class="tag">FREE FIRE • SOLO</div>
-   <h3>Solo Battle</h3>
-   <p>Mode: Solo</p>
-   <p>Entry: Free</p>
-   <p>Status: Coming Soon</p>
-   <button class="btn" onclick="alert('Registration will open soon!')">Join Now</button>
-  </div>
-
-  <div class="card">
-   <div class="tag">FREE FIRE • DUO</div>
-   <h3>Duo Championship</h3>
-   <p>Mode: Duo</p>
-   <p>Entry: Free</p>
-   <p>Status: Coming Soon</p>
-   <button class="btn" onclick="alert('Registration will open soon!')">Join Now</button>
-  </div>
-
-  <div class="card">
-   <div class="tag">FREE FIRE • SQUAD</div>
-   <h3>Squad Masters</h3>
-   <p>Mode: Squad</p>
-   <p>Entry: Free</p>
-   <p>Status: Coming Soon</p>
-   <button class="btn" onclick="alert('Registration will open soon!')">Join Now</button>
-  </div>
- </div>
-
- <h2>🏆 Leaderboard</h2>
- <div class="card">
-  <p>Leaderboard will appear here.</p>
- </div>
+    <h2>Little Wave Esports</h2>
+    <div class="card">
+        <h3>Live Tournament Details</h3>
+        <p><strong>Tournament:</strong> <span id="displayTourney">Loading...</span></p>
+        <p><strong>Room ID:</strong> <span id="displayId">Not Updated</span></p>
+        <p><strong>Password:</strong> <span id="displayPass">Not Updated</span></p>
+    </div>
+    <a href="admin.html" class="admin-link">Go to Admin Panel</a>
 </div>
-<footer></footer>
-<nav>
- <span>🏠 Home</span>
- <span>🏆 Matches</span>
- <span>🥇 Rankings</span>
- <span>👤 Profile</span>
-</nav>
+
+<script>
+    document.getElementById('displayTourney').innerText = localStorage.getItem('tourneyName') || "No Active Tournament";
+    document.getElementById('displayId').innerText = localStorage.getItem('roomID') || "Yet to be updated";
+    document.getElementById('displayPass').innerText = localStorage.getItem('roomPass') || "Yet to be updated";
+</script>
+
 </body>
 </html>
+
