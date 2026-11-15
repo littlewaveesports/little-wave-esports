@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Wave Esports - Admin Panel</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #080d18; color: white; padding: 20px; margin: 0; }
+        .container { max-width: 500px; margin: auto; background: #111a2e; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        h2 { text-align: center; color: #00d2ff; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-size: 14px; }
+        input, textarea { width: 100%; padding: 10px; background: #1a2642; border: 1px solid #2a3b63; color: white; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #00d2ff; border: none; color: #080d18; font-weight: bold; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #00a8cc; }
+        #status { margin-top: 15px; text-align: center; color: #4ade80; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Admin Control Panel</h2>
+    <div class="form-group">
+        <label>Tournament Name / Map:</label>
+        <input type="text" id="tName" placeholder="e.g. Free Fire Bermuda Squad">
+    </div>
+    <div class="form-group">
+        <label>Room ID:</label>
+        <input type="text" id="roomId" placeholder="Enter Room ID">
+    </div>
+    <div class="form-group">
+        <label>Room Password:</label>
+        <input type="text" id="roomPass" placeholder="Enter Password">
+    </div>
+    <button onclick="saveDetails()">Update Details</button>
+    <div id="status"></div>
+</div>
+
+<script>
+    function saveDetails() {
+        const name = document.getElementById('tName').value;
+        const id = document.getElementById('roomId').value;
+        const pass = document.getElementById('roomPass').value;
+
+        localStorage.setItem('tourneyName', name);
+        localStorage.setItem('roomID', id);
+        localStorage.setItem('roomPass', pass);
+
+        document.getElementById('status').innerText = "Details Updated Successfully!";
+        setTimeout(() => { document.getElementById('status').innerText = ""; }, 3000);
+    }
+</script>
+
+</body>
+</html>
